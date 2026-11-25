@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizations — VBImpact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js"></script>
+  <script src="shim.js"></script>
+</head>
+<body>
+  <div class="grain"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="nav">
+    <a class="logo" href="index.html"><span class="logo-mark">vb</span> VBImpact</a>
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav id="primary-navigation">
+      <a href="index.html#how">How it works</a>
+      <a href="search.html">Explore</a>
+      <a href="organizations.html">For organizations</a>
+    </nav>
+    <a class="nav-join" href="search.html">Browse opportunities <span>↗</span></a>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="page-hero">
+      <span class="eyebrow"><i></i> For organizations</span>
+      <h1>Have a role for young volunteers?<br><em>Send us the details.</em></h1>
+      <p>Use this form to submit an organization request. Include the kind of help you need and where the work takes place. Your note will appear in the VBImpact admin inbox for review; submitting it does not publish a listing.</p>
+
+      <div class="icon-row">
+        <div class="icon-tile"><span>✍️</span><strong>Share the basics</strong><small>A short description is enough to submit a request</small></div>
+        <div class="icon-tile"><span>📍</span><strong>Add what you know</strong><small>Location, schedule, and age requirements help</small></div>
+        <div class="icon-tile"><span>🌊</span><strong>Based in Virginia Beach</strong><small>Listings can cover Hampton Roads communities</small></div>
+      </div>
+    </section>
+
+    <section class="form-shell">
+      <form class="form-card" id="org-form">
+        <div class="reachout-card">
+          <strong>Organization request</strong>
+          <p>Your note is saved in the admin inbox for review. Include the details you have; a listing can be added separately after review.</p>
+        </div>
+
+        <div class="form-grid" style="margin-top:22px">
+          <div class="field">
+            <label for="contactName">Your name *</label>
+            <input id="contactName" name="contactName" required placeholder="Alex Rivera">
+          </div>
+          <div class="field">
+            <label for="orgName">Organization</label>
+            <input id="orgName" name="orgName" placeholder="Optional — describe the role below">
+          </div>
+          <div class="field">
+            <label for="contactEmail">Email *</label>
+            <input id="contactEmail" name="contactEmail" type="email" required placeholder="you@org.org">
+          </div>
+          <div class="field">
+            <label for="contactPhone">Phone *</label>
+            <input id="contactPhone" name="contactPhone" type="tel" required placeholder="(757) 555-0100">
+          </div>
+          <div class="field full">
+            <label for="vibe">What would volunteers help with? *</label>
+            <textarea id="vibe" name="vibe" required placeholder="Describe the tasks, location, schedule, and any age or experience requirements you know."></textarea>
+          </div>
+          <div class="field full">
+            <label for="bestTime">Best time to reach you</label>
+            <input id="bestTime" name="bestTime" placeholder="Weekday afternoons, after 4pm, etc.">
+          </div>
+        </div>
+
+        <p class="form-note">Share only information needed to review this request. Your contact details and message are stored in the VBImpact admin inbox so a site administrator can follow up. Submitting does not publish a listing.</p>
+        <div class="form-actions">
+          <button class="primary" type="submit">Send organization request <span>→</span></button>
+          <div class="form-status" id="form-status" aria-live="polite"></div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="index.html"><span class="logo-mark">vb</span> VBImpact</a>
+    <span>© 2026 VBImpact · Youth volunteer listings for Virginia Beach and Hampton Roads.</span>
+    <div>
+      <a href="search.html">Explore</a>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="organizations.js"></script>
+</body>
+</html>

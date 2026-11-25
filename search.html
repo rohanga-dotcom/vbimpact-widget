@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore opportunities — VBImpact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="search.css">
+  <script src="data.js"></script>
+  <script src="shim.js"></script>
+</head>
+<body class="lookup-body">
+  <div class="grain"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="nav lookup-nav">
+    <a class="logo" href="index.html"><span class="logo-mark">vb</span> VBImpact</a>
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
+    <nav id="primary-navigation">
+      <a href="index.html#how">How it works</a>
+      <a class="active" href="search.html">Explore</a>
+      <a href="organizations.html">For organizations</a>
+    </nav>
+    <a class="nav-join" href="index.html">Back home <span>↗</span></a>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="lookup-hero">
+      <div>
+        <span class="eyebrow"><i></i> Current listings</span>
+        <h1>Volunteer opportunities<br><em>around Hampton Roads.</em></h1>
+        <p>Small actions add up. Find a local cleanup, animal-care shift, or community project that fits your life—then confirm details with the organization.</p>
+      </div>
+      <figure class="lookup-photo">
+        <img src="coast.jpg" alt="Illustrative evening light over a coastal shoreline" fetchpriority="high">
+        <figcaption><span>Care for the coast you call home.</span><small>Illustrative photo from Unsplash</small></figcaption>
+      </figure>
+    </section>
+
+    <section class="search-area">
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="keyword" aria-label="Search opportunities" placeholder="Search by title, city, or cause" autocomplete="off">
+      </div>
+      <div class="quick-filters" role="group" aria-label="Popular opportunity filters">
+        <span>Popular:</span>
+        <button type="button" data-quick="Students welcome">Students welcome</button>
+        <button type="button" data-quick="Weekend">Weekend-friendly</button>
+        <button type="button" data-quick="Quick signup (1–3 days)">Quick signup</button>
+        <button type="button" data-quick="Application required">Application needed</button>
+        <button type="button" data-quick="Coastal / beach">Coastal / beach</button>
+        <button type="button" data-quick="No car needed" hidden>No car needed</button>
+        <button type="button" data-quick="Under 1 hour" hidden>Under 1 hour</button>
+        <a class="filter-jump" href="#filters" id="show-all-filters">All filters ↓</a>
+      </div>
+    </section>
+
+    <section class="lookup-layout">
+      <aside class="filters" id="filters" aria-label="Opportunity filters">
+        <div class="filter-top">
+          <h2>Find your fit</h2>
+          <button type="button" id="clear">Clear all</button>
+          <button type="button" class="filters-toggle" id="filters-toggle" aria-controls="filter-sections" aria-expanded="false">Show filters</button>
+        </div>
+
+        <div id="filter-sections">
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Opportunity category <span>−</span></button>
+          <div class="filter-content">
+            <label class="select-wrap">
+              <select id="category" aria-label="Filter by opportunity category">
+                <option value="">All categories</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">City <span>−</span></button>
+          <div class="filter-content">
+            <label class="select-wrap">
+              <select id="location" aria-label="Filter by city">
+                <option value="">All Hampton Roads</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Neighborhood / area <span>−</span></button>
+          <div class="filter-content">
+            <label class="select-wrap">
+              <select id="area" aria-label="Filter by neighborhood or area">
+                <option value="">Any area</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">How quickly can I start? <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Quick signup (1–3 days)"><span></span>Quick signup if a slot is open</label>
+            <label class="check"><input type="checkbox" data-filter="Application required"><span></span>Application required</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Age &amp; eligibility <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Middle school"><span></span>Middle school</label>
+            <label class="check"><input type="checkbox" data-filter="High school"><span></span>High school</label>
+            <label class="check"><input type="checkbox" data-filter="18+"><span></span>Adults (18+)</label>
+            <label class="check"><input type="checkbox" data-filter="Students welcome"><span></span>Students welcome</label>
+            <label class="check"><input type="checkbox" data-filter="No experience"><span></span>No experience needed</label>
+            <label class="check"><input type="checkbox" data-filter="Background check"><span></span>Background check OK</label>
+            <label class="check"><input type="checkbox" data-filter="Orientation required"><span></span>Orientation required</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Getting there <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="No car needed"><span></span>Transit / walkable</label>
+            <label class="check"><input type="checkbox" data-filter="Car helpful"><span></span>Car helpful</label>
+            <label class="check"><input type="checkbox" data-filter="Remote / virtual"><span></span>From home</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Setting <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Indoors"><span></span>Indoors</label>
+            <label class="check"><input type="checkbox" data-filter="Outdoors"><span></span>Outdoors</label>
+            <label class="check"><input type="checkbox" data-filter="Coastal / beach"><span></span>Coastal / beach</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">When <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Weekend"><span></span>Weekends</label>
+            <label class="check"><input type="checkbox" data-filter="Weekday"><span></span>Weekdays</label>
+            <label class="check"><input type="checkbox" data-filter="Evening"><span></span>Evenings</label>
+            <label class="check"><input type="checkbox" data-filter="One-time"><span></span>One-time event</label>
+            <label class="check"><input type="checkbox" data-filter="Recurring"><span></span>Recurring</label>
+            <label class="check"><input type="checkbox" data-filter="Flexible"><span></span>Flexible hours</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Time commitment <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Under 1 hour"><span></span>Under 1 hour</label>
+            <label class="check"><input type="checkbox" data-filter="1-2 hours"><span></span>1–2 hours</label>
+            <label class="check"><input type="checkbox" data-filter="2-4 hours"><span></span>2–4 hours</label>
+            <label class="check"><input type="checkbox" data-filter="Half day"><span></span>Half day</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Group size <span>−</span></button>
+          <div class="filter-content">
+            <label class="check"><input type="checkbox" data-filter="Solo friendly"><span></span>Solo friendly</label>
+            <label class="check"><input type="checkbox" data-filter="Group friendly"><span></span>Group / friends welcome</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <button type="button" class="filter-title" aria-expanded="true">Cause area <span>−</span></button>
+          <div class="filter-content cause-options">
+            <label class="check"><input type="checkbox" data-filter="Animals"><span></span>Animals</label>
+            <label class="check"><input type="checkbox" data-filter="Environment"><span></span>Environment</label>
+            <label class="check"><input type="checkbox" data-filter="Food access"><span></span>Food access</label>
+            <label class="check"><input type="checkbox" data-filter="Kids &amp; education"><span></span>Youth &amp; education</label>
+            <label class="check"><input type="checkbox" data-filter="Arts &amp; culture"><span></span>Arts &amp; culture</label>
+            <label class="check"><input type="checkbox" data-filter="Seniors"><span></span>Seniors</label>
+            <label class="check"><input type="checkbox" data-filter="Housing"><span></span>Housing</label>
+            <label class="check"><input type="checkbox" data-filter="Tourism / hospitality"><span></span>Tourism / hospitality</label>
+          </div>
+        </div>
+        </div>
+      </aside>
+
+      <div class="results">
+        <div class="results-top">
+          <div>
+            <span class="result-count" id="result-count" aria-live="polite">Loading…</span>
+            <div class="active-filters" id="active-filters"></div>
+          </div>
+          <label class="sort">Sort
+            <select id="sort">
+              <option value="recommended">Recommended for students</option>
+              <option value="city">Location A–Z</option>
+              <option value="title">Title A–Z</option>
+            </select>
+          </label>
+        </div>
+        <div class="result-list" id="result-list"></div>
+
+        <section class="failsafe" id="failsafe">
+          <div class="failsafe-copy">
+            <span class="eyebrow"><i></i> Match request</span>
+            <h2>Nothing here suits you?</h2>
+            <p>Send your interests and any scheduling or travel limits. Your request will be added to the VBImpact admin inbox for review.</p>
+          </div>
+          <form class="failsafe-form" id="match-form">
+            <div class="form-grid">
+              <div class="field"><label for="match-name">Your name *</label><input id="match-name" required></div>
+              <div class="field"><label for="match-email">Email *</label><input id="match-email" type="email" required></div>
+              <div class="field"><label for="match-phone">Phone</label><input id="match-phone" type="tel"></div>
+              <div class="field"><label for="match-age">Age / grade</label><input id="match-age" placeholder="e.g. 16 / 11th grade"></div>
+              <div class="field full"><label for="match-interests">What are you into? *</label><textarea id="match-interests" required placeholder="Animals, tutoring, beach cleanups, flexible weekends…"></textarea></div>
+              <div class="field full"><label for="match-constraints">Anything we should know?</label><textarea id="match-constraints" placeholder="No car, only Sundays, need community service hours…"></textarea></div>
+            </div>
+            <div class="form-actions">
+              <button class="primary" type="submit">Send match request <span>→</span></button>
+              <div class="form-status" id="match-status" aria-live="polite"></div>
+            </div>
+            <p class="form-note">Only share details needed for a match request. Your contact information and age/grade are stored in the VBImpact admin inbox so a site administrator can follow up.</p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="index.html"><span class="logo-mark">vb</span> VBImpact</a>
+    <span>© 2026 VBImpact · Volunteer listings for Virginia Beach and Hampton Roads.</span>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="organizations.html">Organizations</a>
+    </div>
+  </footer>
+  <script src="nav.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>
