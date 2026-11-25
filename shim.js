@@ -20,3 +20,10 @@
     return nativeFetch(url, opts);
   };
 })();
+(function () {
+  if (window.self !== window.top) {
+    var hide = document.createElement('style');
+    hide.textContent = 'header.nav{display:none !important}';
+    document.head.appendChild(hide);
+  }
+})();
