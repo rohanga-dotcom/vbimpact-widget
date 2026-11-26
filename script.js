@@ -90,6 +90,7 @@ if (matchCard) {
         .map((answer, index) => ({ answer, weight: weights[index] }))
         .filter(({ answer }) => answer && !['Either is fine', 'No preference', 'It depends'].includes(answer));
       const ranked = opportunities
+        .filter(item => !item.tags?.includes('18+'))
         .map(item => {
           const tags = item.tags || [];
           const score = preferences.reduce(
@@ -98,8 +99,7 @@ if (matchCard) {
           );
           return { item, score };
         })
-        .filter(result => preferences.every(({ answer }) => result.item.tags?.includes(answer))
-          && !result.item.tags?.includes('18+'))
+        .filter(result => preferences.length === 0 || result.score > 0)
         .sort((a, b) => b.score - a.score)
         .slice(0, 3);
 
@@ -112,9 +112,13 @@ if (matchCard) {
       } else {
         const intro = document.createElement('p');
         intro.className = 'survey-result';
-        intro.textContent = preferences.length
-          ? 'These listings match all of your specific selections. Confirm dates and details with each organization.'
-          : 'Here are a few current local listings to explore.';
+        const totalWeight = preferences.reduce((total, preference) => total + preference.weight, 0);
+        const matchesAll = preferences.length > 0 && ranked[0].score === totalWeight;
+        intro.textContent = !preferences.length
+          ? 'Here are a few current local listings to explore.'
+          : matchesAll
+            ? 'These listings match all of your specific selections. Confirm dates and details with each organization.'
+            : 'No listing matches every selection. These are the closest fits. Confirm dates and details with each organization.';
         results.append(intro);
 
         ranked.forEach(({ item }) => {
