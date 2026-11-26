@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organizations — VBImpact</title>
+  <title>Organizations | VBImpact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="data.js"></script>
   <script src="shim.js"></script>
+  <link rel="stylesheet" href="polish.css" />
 </head>
 <body>
   <div class="grain"></div>
@@ -28,12 +29,12 @@
   <main id="main-content" tabindex="-1">
     <section class="page-hero">
       <span class="eyebrow"><i></i> For organizations</span>
-      <h1>Have a role for young volunteers?<br><em>Send us the details.</em></h1>
-      <p>Use this form to submit an organization request. Include the kind of help you need and where the work takes place. Your note will appear in the VBImpact admin inbox for review; submitting it does not publish a listing.</p>
+      <h1>Have a role for student volunteers?<br><em>Send us the details.</em></h1>
+      <p>Tell us what volunteers would do, where the work happens, and any age or experience requirements. Requests go to the VBImpact admin inbox for review. Sending one does not publish a listing.</p>
 
       <div class="icon-row">
-        <div class="icon-tile"><span>✍️</span><strong>Share the basics</strong><small>A short description is enough to submit a request</small></div>
-        <div class="icon-tile"><span>📍</span><strong>Add what you know</strong><small>Location, schedule, and age requirements help</small></div>
+        <div class="icon-tile"><span>✍️</span><strong>Start with a short description</strong><small>A few sentences is enough to send a request</small></div>
+        <div class="icon-tile"><span>📍</span><strong>Add what you know</strong><small>Location, schedule, and age rules help most</small></div>
         <div class="icon-tile"><span>🌊</span><strong>Based in Virginia Beach</strong><small>Listings can cover Hampton Roads communities</small></div>
       </div>
     </section>
@@ -42,7 +43,7 @@
       <form class="form-card" id="org-form">
         <div class="reachout-card">
           <strong>Organization request</strong>
-          <p>Your note is saved in the admin inbox for review. Include the details you have; a listing can be added separately after review.</p>
+          <p>Your note goes to the admin inbox for review. Include whatever details you have. If it’s approved, a listing is added separately.</p>
         </div>
 
         <div class="form-grid" style="margin-top:22px">
@@ -52,7 +53,7 @@
           </div>
           <div class="field">
             <label for="orgName">Organization</label>
-            <input id="orgName" name="orgName" placeholder="Optional — describe the role below">
+            <input id="orgName" name="orgName" placeholder="Optional. Describe the role below.">
           </div>
           <div class="field">
             <label for="contactEmail">Email *</label>
@@ -68,7 +69,7 @@
           </div>
           <div class="field full">
             <label for="bestTime">Best time to reach you</label>
-            <input id="bestTime" name="bestTime" placeholder="Weekday afternoons, after 4pm, etc.">
+            <input id="bestTime" name="bestTime" placeholder="Weekday afternoons, after 4pm">
           </div>
         </div>
 

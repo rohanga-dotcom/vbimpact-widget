@@ -10,6 +10,59 @@ const sortSelect = document.querySelector('#sort');
 const checks = [...document.querySelectorAll('[data-filter]')];
 const matchForm = document.querySelector('#match-form');
 const matchStatus = document.querySelector('#match-status');
+const savedToggle = document.querySelector('#saved-toggle');
+const savedCount = document.querySelector('#saved-count');
+const hoursForm = document.querySelector('#hours-form');
+const hoursList = document.querySelector('#hours-list');
+const hoursTotal = document.querySelector('#hours-total');
+const hoursStatus = document.querySelector('#hours-status');
+const hoursOptions = document.querySelector('#hours-options');
+let savedOnly = false;
+
+// Per-browser storage. Wrapped in try/catch because storage can be blocked.
+function readStore(key, fallback) {
+  try {
+    return JSON.parse(localStorage.getItem(key)) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeStore(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    /* storage unavailable: the feature still works for this visit */
+  }
+}
+
+let savedIds = new Set(readStore('vbi_saved', []));
+let hoursLog = readStore('vbi_hours', []);
+
+function toggleSaved(id) {
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  writeStore('vbi_saved', [...savedIds]);
+  renderResults();
+}
+
+function updateSavedToggle() {
+  savedCount.textContent = String(savedIds.size);
+  savedToggle.setAttribute('aria-pressed', String(savedOnly));
+  savedToggle.classList.toggle('active', savedOnly);
+}
+
+function renderHours() {
+  const total = hoursLog.reduce((sum, entry) => sum + Number(entry.hours || 0), 0);
+  hoursTotal.textContent = `${total} ${total === 1 ? 'hour' : 'hours'} logged`;
+  hoursList.innerHTML = hoursLog.length
+    ? hoursLog.map((entry, index) => `
+        <li>
+          <span><strong>${escapeHtml(entry.hours)} h</strong> · ${escapeHtml(entry.opportunity)} <small>${escapeHtml(entry.date)}</small></span>
+          <button type="button" class="hours-remove" data-hours-index="${index}" aria-label="Remove this entry">Remove</button>
+        </li>`).join('')
+    : '<li class="hours-empty">No hours logged yet.</li>';
+}
 
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
   '&': '&amp;',
@@ -142,10 +195,12 @@ function renderResults() {
     const placeMatch = !place || item.city === place;
     const areaMatch = !area || item.area === area;
     const filterMatch = !filters.length || filters.every(filter => tags.includes(filter));
-    return textMatch && categoryMatch && placeMatch && areaMatch && filterMatch;
+    const savedMatch = !savedOnly || savedIds.has(item.id);
+    return textMatch && categoryMatch && placeMatch && areaMatch && filterMatch && savedMatch;
   }));
 
   syncQuickButtons();
+  updateSavedToggle();
   count.textContent = `${results.length} ${results.length === 1 ? 'opportunity' : 'opportunities'}`;
 
   const chips = [...filters, ...(category ? [category] : []), ...(place ? [place] : []), ...(area ? [area] : [])];
@@ -192,6 +247,7 @@ function renderResults() {
           <div class="result-links">
             <span class="start-status ${item.startType === 'Quick signup (1–3 days)' ? 'quick' : 'application'}">${escapeHtml(item.startType || 'Application required')}</span>
             <a class="details-link" href="${escapeHtml(href)}" ${external ? 'target="_blank" rel="noopener"' : ''}>${applyLabel} <span>→</span></a>
+            <button type="button" class="save-button${savedIds.has(item.id) ? ' saved' : ''}" data-save="${escapeHtml(item.id)}" aria-pressed="${savedIds.has(item.id)}">${savedIds.has(item.id) ? 'Saved ✓' : 'Save'}</button>
             ${safeExternalUrl(item.sourceUrl) && item.sourceUrl !== item.applyUrl ? `<a class="source-link" href="${escapeHtml(safeExternalUrl(item.sourceUrl))}" target="_blank" rel="noopener">Official information</a>` : ''}
           </div>
         </article>
@@ -301,6 +357,42 @@ matchForm?.addEventListener('submit', async event => {
   }
 });
 
+list.addEventListener('click', event => {
+  const button = event.target.closest('[data-save]');
+  if (button) toggleSaved(button.dataset.save);
+});
+
+savedToggle.addEventListener('click', () => {
+  savedOnly = !savedOnly;
+  renderResults();
+});
+
+hoursForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const date = document.querySelector('#hours-date').value;
+  const hours = Number(document.querySelector('#hours-hours').value);
+  const opportunity = document.querySelector('#hours-opportunity').value.trim();
+  if (!date || !(hours > 0) || !opportunity) {
+    hoursStatus.textContent = 'Add a date, hours, and an opportunity.';
+    return;
+  }
+  hoursLog.push({ date, hours, opportunity });
+  writeStore('vbi_hours', hoursLog);
+  hoursForm.reset();
+  hoursStatus.textContent = 'Added.';
+  renderHours();
+});
+
+hoursList.addEventListener('click', event => {
+  const button = event.target.closest('[data-hours-index]');
+  if (!button) return;
+  hoursLog.splice(Number(button.dataset.hoursIndex), 1);
+  writeStore('vbi_hours', hoursLog);
+  renderHours();
+});
+
+renderHours();
+
 async function loadOpportunities() {
   try {
     opportunities = await fetch('/api/opportunities').then(r => {
@@ -314,6 +406,7 @@ async function loadOpportunities() {
     return;
   }
   populateCategories();
+  hoursOptions.replaceChildren(...opportunities.map(item => new Option(item.title)));
   renderResults();
 }
 

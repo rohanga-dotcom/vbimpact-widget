@@ -1,0 +1,176 @@
+/* Polish layer: visual refinements only. No content or structure changes. */
+:root {
+  --muted: #475a62;            /* was #5d737b: 4.29:1 on sand; now 6.2:1 (WCAG AA) */
+  --line: #c9dcd9;
+  --accent-text: #0f6f86;      /* teal for text on light backgrounds: 4.95:1 on sand */
+  --shadow-soft: 0 1px 2px rgba(11, 44, 56, 0.06), 0 10px 26px rgba(11, 44, 56, 0.08);
+  --shadow-lift: 0 2px 4px rgba(11, 44, 56, 0.08), 0 18px 40px rgba(11, 44, 56, 0.16);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.eyebrow, .text-link, .source-link, .filter-jump {
+  color: var(--accent-text);
+}
+
+/* Interactive polish */
+button, .primary, .white-button, .k, .chip, .filter-chip {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+button:hover, .primary:hover, .white-button:hover { transform: translateY(-1px); }
+button:active, .primary:active { transform: translateY(0); }
+
+.primary, .white-button, button.primary {
+  min-height: 44px;
+}
+
+input, select, textarea {
+  min-height: 44px;
+}
+
+/* Cards */
+.result-card {
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Focus visibility on every interactive element */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid #ef7a55;
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Results header: saved toggle + sort */
+.results-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.saved-toggle {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--accent-text);
+  background: #fff;
+  color: var(--accent-text);
+  font-weight: 700;
+  cursor: pointer;
+}
+.saved-toggle.active,
+.saved-toggle[aria-pressed="true"] {
+  background: var(--accent-text);
+  color: #fff;
+}
+
+/* Save button on each result card */
+.save-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--accent-text);
+  background: #fff;
+  color: var(--accent-text);
+  font-weight: 700;
+  cursor: pointer;
+}
+.save-button.saved {
+  background: #e6f4ef;
+  border-color: #2e8b6f;
+  color: #1d6b53;
+}
+
+/* Service hours panel */
+.hours-panel {
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 18px;
+}
+.hours-panel h2 {
+  margin: 6px 0 4px;
+}
+.hours-panel p {
+  margin: 0;
+}
+.hours-summary strong {
+  font-size: 1.1rem;
+}
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.hours-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.hours-list small {
+  color: var(--muted);
+  margin-left: 6px;
+}
+.hours-empty {
+  color: var(--muted);
+}
+.hours-remove {
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Hours form: full-width opportunity field */
+.hours-form .form-grid {
+  grid-template-columns: 1fr 1fr;
+}
+.hours-form .field.full {
+  grid-column: 1 / -1;
+}
+.hours-form .field input {
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 750px) {
+  .hours-form .form-grid { grid-template-columns: 1fr; }
+}
+.hours-form .field {
+  grid-template-columns: minmax(0, 1fr);
+}

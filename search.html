@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore opportunities — VBImpact</title>
+  <title>Explore opportunities | VBImpact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="search.css">
   <script src="data.js"></script>
   <script src="shim.js"></script>
+  <link rel="stylesheet" href="polish.css" />
 </head>
 <body class="lookup-body">
   <div class="grain"></div>
@@ -31,10 +32,10 @@
       <div>
         <span class="eyebrow"><i></i> Current listings</span>
         <h1>Volunteer opportunities<br><em>around Hampton Roads.</em></h1>
-        <p>Small actions add up. Find a local cleanup, animal-care shift, or community project that fits your life—then confirm details with the organization.</p>
+        <p>Find a cleanup, an animal-care shift, or a community project that fits your schedule. Then confirm the details with the organization, since dates and requirements change.</p>
       </div>
       <figure class="lookup-photo">
-        <img src="coast.jpg" alt="Illustrative evening light over a coastal shoreline" fetchpriority="high">
+        <img loading="lazy" decoding="async" src="coast.jpg" alt="Illustrative evening light over a coastal shoreline" fetchpriority="high">
         <figcaption><span>Care for the coast you call home.</span><small>Illustrative photo from Unsplash</small></figcaption>
       </figure>
     </section>
@@ -190,21 +191,45 @@
             <span class="result-count" id="result-count" aria-live="polite">Loading…</span>
             <div class="active-filters" id="active-filters"></div>
           </div>
-          <label class="sort">Sort
-            <select id="sort">
-              <option value="recommended">Recommended for students</option>
-              <option value="city">Location A–Z</option>
-              <option value="title">Title A–Z</option>
-            </select>
-          </label>
+          <div class="results-actions">
+            <button type="button" class="saved-toggle" id="saved-toggle" aria-pressed="false">Saved (<span id="saved-count">0</span>)</button>
+            <label class="sort">Sort
+              <select id="sort">
+                <option value="recommended">Recommended for students</option>
+                <option value="city">Location A–Z</option>
+                <option value="title">Title A–Z</option>
+              </select>
+            </label>
+          </div>
         </div>
         <div class="result-list" id="result-list"></div>
+
+        <section class="hours-panel" id="hours-panel">
+          <div class="hours-copy">
+            <span class="eyebrow"><i></i> Service hours</span>
+            <h2>Track your hours</h2>
+            <p>Log the time you volunteer. Your log is saved in this browser only.</p>
+          </div>
+          <form class="hours-form" id="hours-form">
+            <div class="form-grid">
+              <div class="field"><label for="hours-date">Date *</label><input id="hours-date" type="date" required></div>
+              <div class="field"><label for="hours-hours">Hours *</label><input id="hours-hours" type="number" min="0.5" max="24" step="0.5" required></div>
+              <div class="field full"><label for="hours-opportunity">Opportunity or organization *</label><input id="hours-opportunity" list="hours-options" required placeholder="Start typing or enter your own"><datalist id="hours-options"></datalist></div>
+            </div>
+            <div class="form-actions">
+              <button class="primary" type="submit">Add hours <span>+</span></button>
+              <div class="form-status" id="hours-status" aria-live="polite"></div>
+            </div>
+          </form>
+          <div class="hours-summary"><strong id="hours-total">0 hours logged</strong></div>
+          <ul class="hours-list" id="hours-list"></ul>
+        </section>
 
         <section class="failsafe" id="failsafe">
           <div class="failsafe-copy">
             <span class="eyebrow"><i></i> Match request</span>
             <h2>Nothing here suits you?</h2>
-            <p>Send your interests and any scheduling or travel limits. Your request will be added to the VBImpact admin inbox for review.</p>
+            <p>Tell us what you’re interested in, plus any schedule or travel limits. Your request goes to the VBImpact admin inbox for review.</p>
           </div>
           <form class="failsafe-form" id="match-form">
             <div class="form-grid">
