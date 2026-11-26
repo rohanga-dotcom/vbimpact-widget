@@ -154,11 +154,6 @@ function iconMarkup(item) {
       alt: 'Volunteers sorting and packing food donations',
       credit: 'Illustrative photo · Unsplash'
     },
-    'clean-the-bay-day-virginia-beach': {
-      file: 'beach-cleanup-volunteers.jpg',
-      alt: 'Volunteers sorting equipment for an Oregon coastal cleanup',
-      credit: 'Oregon cleanup · Ocean Blue Project · CC BY-SA 4.0'
-    },
     'lynnhaven-native-plantings': {
       file: 'native-planting.jpg',
       alt: 'Hands planting a young native plant',

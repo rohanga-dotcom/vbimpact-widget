@@ -249,7 +249,7 @@ em {
 .hero-art {
   background:
     linear-gradient(180deg, rgba(11, 44, 56, 0.03) 20%, rgba(11, 44, 56, 0.28) 100%),
-    url("beach-cleanup-volunteers.jpg") center 48% / cover no-repeat;
+    url("coast.jpg") center 60% / cover no-repeat;
   border-radius: 240px 240px 18px 18px;
   position: relative;
   min-height: 520px;

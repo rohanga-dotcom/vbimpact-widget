@@ -174,3 +174,22 @@ img { max-width: 100%; height: auto; }
 .hours-form .field {
   grid-template-columns: minmax(0, 1fr);
 }
+
+/* Polish pass: layout and mobile fixes */
+
+/* Home pill: let the text wrap naturally instead of splitting the "VBImpact ·" label onto its own line */
+.mission-pill {
+  display: inline-block;
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+/* Explore: the sort control was hidden on phones, so students couldn't sort there */
+@media (max-width: 750px) {
+  .sort { display: flex; }
+}
+
+/* Organizations: align the request form with the page heading instead of floating in the center */
+@media (min-width: 751px) {
+  .form-shell { margin-left: 0; margin-right: auto; }
+}
