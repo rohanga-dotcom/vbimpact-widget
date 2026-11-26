@@ -193,3 +193,16 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 751px) {
   .form-shell { margin-left: 0; margin-right: auto; }
 }
+
+/* Audit fixes: phone overflow from the sort control, and labels too small to read */
+@media (max-width: 750px) {
+  .results-actions { width: 100%; }
+  .sort { width: 100%; min-width: 0; }
+  .sort select { width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; }
+}
+.listing-facts > div > span,
+.guidelines > strong,
+.contact-email > span {
+  font-size: 11px;
+}
+.avatars b { font-size: 11px; }
